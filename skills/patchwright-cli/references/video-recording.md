@@ -6,25 +6,25 @@ Capture browser automation sessions as video for debugging, documentation, or ve
 
 ```bash
 # Open browser first
-playwright-cli open
+patchwright-cli open
 
 # Start recording
-playwright-cli video-start demo.webm
+patchwright-cli video-start demo.webm
 
 # Add a chapter marker for section transitions
-playwright-cli video-chapter "Getting Started" --description="Opening the homepage" --duration=2000
+patchwright-cli video-chapter "Getting Started" --description="Opening the homepage" --duration=2000
 
 # Navigate and perform actions
-playwright-cli goto https://example.com
-playwright-cli snapshot
-playwright-cli click e1
+patchwright-cli goto https://example.com
+patchwright-cli snapshot
+patchwright-cli click e1
 
 # Add another chapter
-playwright-cli video-chapter "Filling Form" --description="Entering test data" --duration=2000
-playwright-cli fill e2 "test input"
+patchwright-cli video-chapter "Filling Form" --description="Entering test data" --duration=2000
+patchwright-cli fill e2 "test input"
 
 # Stop and save
-playwright-cli video-stop
+patchwright-cli video-stop
 ```
 
 ## Best Practices
@@ -33,8 +33,8 @@ playwright-cli video-stop
 
 ```bash
 # Include context in filename
-playwright-cli video-start recordings/login-flow-2024-01-15.webm
-playwright-cli video-start recordings/checkout-test-run-42.webm
+patchwright-cli video-start recordings/login-flow-2024-01-15.webm
+patchwright-cli video-start recordings/checkout-test-run-42.webm
 ```
 
 ### 2. Record entire hero scripts.
@@ -44,7 +44,7 @@ It allows inserting appropriate pauses between the actions and annotating the vi
 
 1) Perform scenario using CLI and take note of all locators and actions. You'll need those locators to request their bounding boxes for highlight.
 2) Create a file with the intended script for video (below). Use pressSequentially w/ delay for nice typing, make reasonable pauses.
-3) Use playwright-cli run-code --filename your-script.js
+3) Use patchwright-cli run-code --filename your-script.js
 
 **Important**: Overlays are `pointer-events: none` — they do not interfere with page interactions. You can safely keep sticky overlays visible while clicking, filling, or performing any actions on the page.
 

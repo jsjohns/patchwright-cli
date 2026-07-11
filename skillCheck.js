@@ -20,15 +20,14 @@ const fs = require('fs');
 const path = require('path');
 
 function bundledSkillFile() {
-  const programPath = require.resolve('playwright-core/lib/tools/cli-client/program');
-  return path.join(path.dirname(programPath), 'skill', 'SKILL.md');
+  return path.join(__dirname, 'skills', 'patchwright-cli', 'SKILL.md');
 }
 
 function installedSkillTargets() {
   const cwd = process.cwd();
   return [
-    { dir: path.join(cwd, '.claude', 'skills', 'playwright-cli'), command: 'playwright-cli install --skills' },
-    { dir: path.join(cwd, '.agents', 'skills', 'playwright-cli'), command: 'playwright-cli install --skills=agents' },
+    { dir: path.join(cwd, '.claude', 'skills', 'patchwright-cli'), command: 'patchwright-cli install --skills' },
+    { dir: path.join(cwd, '.agents', 'skills', 'patchwright-cli'), command: 'patchwright-cli install --skills=agents' },
   ];
 }
 
@@ -63,7 +62,7 @@ function checkInstalledSkills() {
         continue;
       if (installed !== bundled) {
         process.stderr.write(frame([
-          `The playwright-cli skill at '${path.relative(process.cwd(), target.dir)}'`,
+          `The patchwright-cli skill at '${path.relative(process.cwd(), target.dir)}'`,
           `does not match the tool version.`,
           ``,
           `Run \`${target.command}\``,

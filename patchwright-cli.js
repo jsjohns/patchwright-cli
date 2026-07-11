@@ -20,8 +20,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const { program } = require('playwright-core/lib/tools/cli-client/program');
-const coreBundle = require('playwright-core/lib/coreBundle');
+const { program } = require('patchright-core/lib/tools/cli-client/program');
+const coreBundle = require('patchright-core/lib/coreBundle');
 const { tools, registry } = coreBundle;
 const { checkInstalledSkills, frame } = require('./skillCheck');
 
@@ -33,10 +33,32 @@ main();
 
 async function main() {
   const command = process.argv.slice(2).find(arg => !arg.startsWith('-'));
+  installBundledSkill();
   if (command !== 'install')
     checkInstalledSkills();
   await notifyAboutUpdate().catch(() => {});
   program({ embedderVersion: packageJson.version });
+}
+
+function installBundledSkill() {
+  const args = process.argv.slice(2);
+  if (!args.includes('install'))
+    return;
+
+  const skillsIndex = args.findIndex(arg => arg === '--skills' || arg.startsWith('--skills='));
+  if (skillsIndex === -1)
+    return;
+
+  const skillsArg = args[skillsIndex];
+  const target = skillsArg === '--skills=agents' ? 'agents' : 'claude';
+  const source = path.join(__dirname, 'skills', 'patchwright-cli');
+  const destination = path.join(process.cwd(), `.${target}`, 'skills', 'patchwright-cli');
+
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.cpSync(source, destination, { recursive: true });
+  process.stdout.write(`Skills installed to \`${path.relative(process.cwd(), destination)}\`.\n`);
+
+  process.argv = process.argv.filter(arg => arg !== skillsArg);
 }
 
 async function notifyAboutUpdate() {

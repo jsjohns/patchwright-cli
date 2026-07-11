@@ -1,6 +1,6 @@
-# playwright-cli
+# patchwright-cli
 
-Playwright CLI with SKILLS
+Playwright CLI with SKILLS, powered by Patchright.
 
 ### Playwright CLI vs Playwright MCP
 
@@ -23,8 +23,8 @@ This package provides CLI interface into Playwright. If you are using **coding a
 ## Installation
 
 ```bash
-npm install -g @playwright/cli@latest
-playwright-cli --help
+npm install -g github:jsjohns/patchwright-cli
+patchwright-cli --help
 ```
 
 ### Installing skills
@@ -32,16 +32,16 @@ playwright-cli --help
 Claude Code, GitHub Copilot and others will use the locally installed skills.
 
 ```bash
-playwright-cli install --skills
+patchwright-cli install --skills
 ```
 
 ### Skills-less operation
 
-Point your agent at the CLI and let it cook. It'll read the skill off `playwright-cli --help` on its own:
+Point your agent at the CLI and let it cook. It'll read the skill off `patchwright-cli --help` on its own:
 
 ```
-Test the "add todo" flow on https://demo.playwright.dev/todomvc using playwright-cli.
-Check playwright-cli --help for available commands.
+Test the "add todo" flow on https://demo.playwright.dev/todomvc using patchwright-cli.
+Check patchwright-cli --help for available commands.
 ```
 
 ## Demo
@@ -54,14 +54,14 @@ Check playwright-cli --help for available commands.
 Your agent will be running commands, but it does not mean you can't play with it manually:
 
 ```
-playwright-cli open https://demo.playwright.dev/todomvc/ --headed
-playwright-cli type "Buy groceries"
-playwright-cli press Enter
-playwright-cli type "Water flowers"
-playwright-cli press Enter
-playwright-cli check e21
-playwright-cli check e35
-playwright-cli screenshot
+patchwright-cli open https://demo.playwright.dev/todomvc/ --headed
+patchwright-cli type "Buy groceries"
+patchwright-cli press Enter
+patchwright-cli type "Water flowers"
+patchwright-cli press Enter
+patchwright-cli check e21
+patchwright-cli check e35
+patchwright-cli screenshot
 ```
 
 ## Headed operation
@@ -69,7 +69,7 @@ playwright-cli screenshot
 Playwright CLI is headless by default. If you'd like to see the browser, pass `--headed` to `open`:
 
 ```bash
-playwright-cli open https://playwright.dev --headed
+patchwright-cli open https://playwright.dev --headed
 ```
 
 ## Sessions
@@ -82,9 +82,9 @@ You can use different instances of the browser for different projects with sessi
 the invocation to talk to a specific browser.
 
 ```bash
-playwright-cli open https://playwright.dev
-playwright-cli -s=example open https://example.com --persistent
-playwright-cli list
+patchwright-cli open https://playwright.dev
+patchwright-cli -s=example open https://example.com --persistent
+patchwright-cli list
 ```
 
 You can run your coding agent with the `PLAYWRIGHT_CLI_SESSION` environment variable:
@@ -98,19 +98,19 @@ Or instruct it to prepend `-s=` to the calls.
 Manage your sessions as follows:
 
 ```bash
-playwright-cli list                     # list all sessions
-playwright-cli close-all                # close all browsers
-playwright-cli kill-all                 # forcefully kill all browser processes
+patchwright-cli list                     # list all sessions
+patchwright-cli close-all                # close all browsers
+patchwright-cli kill-all                 # forcefully kill all browser processes
 ```
 
 ## Monitoring
 
-Use `playwright-cli show` to open a visual dashboard that lets you see and control all running
+Use `patchwright-cli show` to open a visual dashboard that lets you see and control all running
 browser sessions. This is useful when your coding agents are running browser automation in the
 background and you want to observe their progress or step in to help.
 
 ```bash
-playwright-cli show
+patchwright-cli show
 ```
 
 <img width="1107" height="729" alt="Image" src="https://github.com/user-attachments/assets/99df739d-106a-4520-b004-bb315db41da7" />
@@ -130,161 +130,156 @@ From the grid you can also close running sessions or delete data for inactive on
 ### Core
 
 ```bash
-playwright-cli open [url]               # open browser, optionally navigate to url
-playwright-cli goto <url>               # navigate to a url
-playwright-cli close                    # close the page
-playwright-cli type <text>              # type text into editable element
-playwright-cli click <ref> [button]     # perform click on a web page
-playwright-cli dblclick <ref> [button]  # perform double click on a web page
-playwright-cli fill <ref> <text>        # fill text into editable element
-playwright-cli fill <ref> <text> --submit # fill and press Enter
-playwright-cli drag <startRef> <endRef> # perform drag and drop between two elements
-playwright-cli drop <ref> --path=<file> # drop files onto an element (from outside the page)
-playwright-cli drop <ref> --data="k=v"  # drop data onto an element
-playwright-cli hover <ref>              # hover over element on page
-playwright-cli select <ref> <val>       # select an option in a dropdown
-playwright-cli upload <file>            # upload one or multiple files
-playwright-cli check <ref>              # check a checkbox or radio button
-playwright-cli uncheck <ref>            # uncheck a checkbox or radio button
-playwright-cli snapshot                 # capture page snapshot to obtain element ref
-playwright-cli snapshot --filename=f    # save snapshot to specific file
-playwright-cli snapshot <ref>           # snapshot a specific element
-playwright-cli snapshot --depth=N       # limit snapshot depth for efficiency
-playwright-cli find <text>              # search the snapshot for text, returns matching nodes
-playwright-cli find --regex <pattern>   # search the snapshot with a regexp
-playwright-cli eval <func> [ref]        # evaluate javascript expression on page or element
-playwright-cli dialog-accept [prompt]   # accept a dialog
-playwright-cli dialog-dismiss           # dismiss a dialog
-playwright-cli resize <w> <h>           # resize the browser window
+patchwright-cli open [url]               # open browser, optionally navigate to url
+patchwright-cli goto <url>               # navigate to a url
+patchwright-cli close                    # close the page
+patchwright-cli type <text>              # type text into editable element
+patchwright-cli click <ref> [button]     # perform click on a web page
+patchwright-cli dblclick <ref> [button]  # perform double click on a web page
+patchwright-cli fill <ref> <text>        # fill text into editable element
+patchwright-cli fill <ref> <text> --submit # fill and press Enter
+patchwright-cli drag <startRef> <endRef> # perform drag and drop between two elements
+patchwright-cli drop <ref> --path=<file> # drop files onto an element (from outside the page)
+patchwright-cli drop <ref> --data="k=v"  # drop data onto an element
+patchwright-cli hover <ref>              # hover over element on page
+patchwright-cli select <ref> <val>       # select an option in a dropdown
+patchwright-cli upload <file>            # upload one or multiple files
+patchwright-cli check <ref>              # check a checkbox or radio button
+patchwright-cli uncheck <ref>            # uncheck a checkbox or radio button
+patchwright-cli snapshot                 # capture page snapshot to obtain element ref
+patchwright-cli snapshot --filename=f    # save snapshot to specific file
+patchwright-cli snapshot <ref>           # snapshot a specific element
+patchwright-cli snapshot --depth=N       # limit snapshot depth for efficiency
+patchwright-cli eval <func> [ref]        # evaluate javascript expression on page or element
+patchwright-cli dialog-accept [prompt]   # accept a dialog
+patchwright-cli dialog-dismiss           # dismiss a dialog
+patchwright-cli resize <w> <h>           # resize the browser window
 ```
 
 ### Navigation
 
 ```bash
-playwright-cli go-back                  # go back to the previous page
-playwright-cli go-forward               # go forward to the next page
-playwright-cli reload                   # reload the current page
+patchwright-cli go-back                  # go back to the previous page
+patchwright-cli go-forward               # go forward to the next page
+patchwright-cli reload                   # reload the current page
 ```
 
 ### Keyboard
 
 ```bash
-playwright-cli press <key>              # press a key on the keyboard, `a`, `arrowleft`
-playwright-cli keydown <key>            # press a key down on the keyboard
-playwright-cli keyup <key>              # press a key up on the keyboard
+patchwright-cli press <key>              # press a key on the keyboard, `a`, `arrowleft`
+patchwright-cli keydown <key>            # press a key down on the keyboard
+patchwright-cli keyup <key>              # press a key up on the keyboard
 ```
 
 ### Mouse
 
 ```bash
-playwright-cli mousemove <x> <y>        # move mouse to a given position
-playwright-cli mousedown [button]       # press mouse down
-playwright-cli mouseup [button]         # press mouse up
-playwright-cli mousewheel <dx> <dy>     # scroll mouse wheel
+patchwright-cli mousemove <x> <y>        # move mouse to a given position
+patchwright-cli mousedown [button]       # press mouse down
+patchwright-cli mouseup [button]         # press mouse up
+patchwright-cli mousewheel <dx> <dy>     # scroll mouse wheel
 ```
 
 ### Save as
 
 ```bash
-playwright-cli screenshot [ref]         # screenshot of the current page or element
-playwright-cli screenshot --filename=f  # save screenshot with specific filename
-playwright-cli screenshot --hires       # capture at full device pixel ratio
-playwright-cli pdf                      # save page as pdf
-playwright-cli pdf --filename=page.pdf  # save pdf with specific filename
+patchwright-cli screenshot [ref]         # screenshot of the current page or element
+patchwright-cli screenshot --filename=f  # save screenshot with specific filename
+patchwright-cli pdf                      # save page as pdf
+patchwright-cli pdf --filename=page.pdf  # save pdf with specific filename
 ```
 
 ### Tabs
 
 ```bash
-playwright-cli tab-list                 # list all tabs
-playwright-cli tab-new [url]            # create a new tab
-playwright-cli tab-close [index]        # close a browser tab
-playwright-cli tab-select <index>       # select a browser tab
+patchwright-cli tab-list                 # list all tabs
+patchwright-cli tab-new [url]            # create a new tab
+patchwright-cli tab-close [index]        # close a browser tab
+patchwright-cli tab-select <index>       # select a browser tab
 ```
 
 ### Storage
 
 ```bash
-playwright-cli state-save [filename]    # save storage state
-playwright-cli state-load <filename>    # load storage state
+patchwright-cli state-save [filename]    # save storage state
+patchwright-cli state-load <filename>    # load storage state
 
 # Cookies
-playwright-cli cookie-list [--domain]   # list cookies
-playwright-cli cookie-get <name>        # get a cookie
-playwright-cli cookie-set <name> <val>  # set a cookie
-playwright-cli cookie-delete <name>     # delete a cookie
-playwright-cli cookie-clear             # clear all cookies
+patchwright-cli cookie-list [--domain]   # list cookies
+patchwright-cli cookie-get <name>        # get a cookie
+patchwright-cli cookie-set <name> <val>  # set a cookie
+patchwright-cli cookie-delete <name>     # delete a cookie
+patchwright-cli cookie-clear             # clear all cookies
 
 # LocalStorage
-playwright-cli localstorage-list        # list localStorage entries
-playwright-cli localstorage-get <key>   # get localStorage value
-playwright-cli localstorage-set <k> <v> # set localStorage value
-playwright-cli localstorage-delete <k>  # delete localStorage entry
-playwright-cli localstorage-clear       # clear all localStorage
+patchwright-cli localstorage-list        # list localStorage entries
+patchwright-cli localstorage-get <key>   # get localStorage value
+patchwright-cli localstorage-set <k> <v> # set localStorage value
+patchwright-cli localstorage-delete <k>  # delete localStorage entry
+patchwright-cli localstorage-clear       # clear all localStorage
 
 # SessionStorage
-playwright-cli sessionstorage-list      # list sessionStorage entries
-playwright-cli sessionstorage-get <k>   # get sessionStorage value
-playwright-cli sessionstorage-set <k> <v> # set sessionStorage value
-playwright-cli sessionstorage-delete <k>  # delete sessionStorage entry
-playwright-cli sessionstorage-clear     # clear all sessionStorage
+patchwright-cli sessionstorage-list      # list sessionStorage entries
+patchwright-cli sessionstorage-get <k>   # get sessionStorage value
+patchwright-cli sessionstorage-set <k> <v> # set sessionStorage value
+patchwright-cli sessionstorage-delete <k>  # delete sessionStorage entry
+patchwright-cli sessionstorage-clear     # clear all sessionStorage
 ```
 
 ### Network
 
 ```bash
-playwright-cli route <pattern> [opts]   # mock network requests
-playwright-cli route-list               # list active routes
-playwright-cli unroute [pattern]        # remove route(s)
+patchwright-cli route <pattern> [opts]   # mock network requests
+patchwright-cli route-list               # list active routes
+patchwright-cli unroute [pattern]        # remove route(s)
 ```
 
 ### DevTools
 
 ```bash
-playwright-cli console [min-level]      # list console messages
-playwright-cli requests                 # list all network requests since loading the page
-playwright-cli request <index>          # show details for a specific request
-playwright-cli run-code <code>          # run playwright code snippet
-playwright-cli run-code --filename=f    # run playwright code from a file
-playwright-cli tracing-start            # start trace recording
-playwright-cli tracing-stop             # stop trace recording
-playwright-cli video-start [filename]   # start video recording
-playwright-cli video-chapter <title>    # add a chapter marker to the video
-playwright-cli video-show-actions       # annotate each action with a callout in the video
-playwright-cli video-hide-actions       # stop annotating actions in the video
-playwright-cli video-stop               # stop video recording
-playwright-cli show                     # open the visual dashboard
-playwright-cli show --annotate          # launch dashboard for UI review / design feedback
-playwright-cli generate-locator <ref>   # generate a playwright locator for an element
-playwright-cli highlight <ref>          # show a persistent highlight overlay
-playwright-cli highlight <ref> --style= # highlight with a custom CSS style
-playwright-cli highlight <ref> --hide   # hide highlight on a specific element
-playwright-cli highlight --hide         # hide all page highlights
+patchwright-cli console [min-level]      # list console messages
+patchwright-cli requests                 # list all network requests since loading the page
+patchwright-cli request <index>          # show details for a specific request
+patchwright-cli run-code <code>          # run playwright code snippet
+patchwright-cli run-code --filename=f    # run playwright code from a file
+patchwright-cli tracing-start            # start trace recording
+patchwright-cli tracing-stop             # stop trace recording
+patchwright-cli video-start [filename]   # start video recording
+patchwright-cli video-chapter <title>    # add a chapter marker to the video
+patchwright-cli video-show-actions       # annotate each action with a callout in the video
+patchwright-cli video-hide-actions       # stop annotating actions in the video
+patchwright-cli video-stop               # stop video recording
+patchwright-cli show                     # open the visual dashboard
+patchwright-cli show --annotate          # launch dashboard for UI review / design feedback
+patchwright-cli generate-locator <ref>   # generate a playwright locator for an element
+patchwright-cli highlight <ref>          # show a persistent highlight overlay
+patchwright-cli highlight <ref> --style= # highlight with a custom CSS style
+patchwright-cli highlight <ref> --hide   # hide highlight on a specific element
+patchwright-cli highlight --hide         # hide all page highlights
 ```
 
 ### Open parameters
 
 ```bash
-playwright-cli open --browser=chrome    # use specific browser
-playwright-cli open --mobile            # emulate a generic mobile device
-playwright-cli open --device="iPhone 15" # emulate a specific device
-playwright-cli attach --extension=chrome # connect via Playwright Extension
-playwright-cli attach --cdp=chrome      # attach to running Chrome/Edge by channel
-playwright-cli attach --cdp=<url>       # attach via CDP endpoint
-playwright-cli detach                   # detach an attached session, leaves the external browser running
-playwright-cli open --persistent        # use persistent profile
-playwright-cli open --profile=<path>    # use custom profile directory
-playwright-cli open --config=file.json  # use config file
-playwright-cli close                    # close the browser
-playwright-cli delete-data              # delete user data for default session
+patchwright-cli open --browser=chrome    # use specific browser
+patchwright-cli attach --extension=chrome # connect via Playwright Extension
+patchwright-cli attach --cdp=chrome      # attach to running Chrome/Edge by channel
+patchwright-cli attach --cdp=<url>       # attach via CDP endpoint
+patchwright-cli detach                   # detach an attached session, leaves the external browser running
+patchwright-cli open --persistent        # use persistent profile
+patchwright-cli open --profile=<path>    # use custom profile directory
+patchwright-cli open --config=file.json  # use config file
+patchwright-cli close                    # close the browser
+patchwright-cli delete-data              # delete user data for default session
 ```
 
 ### Snapshots
 
-After each command, playwright-cli provides a snapshot of the current browser state.
+After each command, patchwright-cli provides a snapshot of the current browser state.
 
 ```bash
-> playwright-cli goto https://example.com
+> patchwright-cli goto https://example.com
 ### Page
 - Page URL: https://example.com/
 - Page Title: Example Domain
@@ -292,31 +287,23 @@ After each command, playwright-cli provides a snapshot of the current browser st
 [Snapshot](.playwright-cli/page-2026-02-14T19-22-42-679Z.yml)
 ```
 
-You can also take a snapshot on demand using `playwright-cli snapshot` command. All the options below can be combined as needed.
+You can also take a snapshot on demand using `patchwright-cli snapshot` command. All the options below can be combined as needed.
 
 ```bash
 # default - save to a file with timestamp-based name
-playwright-cli snapshot
+patchwright-cli snapshot
 
 # save to file, use when snapshot is a part of the workflow result
-playwright-cli snapshot --filename=after-click.yaml
+patchwright-cli snapshot --filename=after-click.yaml
 
 # snapshot an element instead of the whole page
-playwright-cli snapshot "#main"
+patchwright-cli snapshot "#main"
 
 # limit snapshot depth for efficiency, take a partial snapshot afterwards
-playwright-cli snapshot --depth=4
-playwright-cli snapshot e34
+patchwright-cli snapshot --depth=4
+patchwright-cli snapshot e34
 
 # include each element's bounding box as [box=x,y,width,height]
-playwright-cli snapshot --boxes
-
-# search a large snapshot instead of capturing it all — returns matching nodes
-# with 3 lines of context around each match (like grep -C)
-playwright-cli find "Add to cart"
-playwright-cli find --regex "\\$[0-9]+\\.[0-9]{2}"
-# wrap the regexp in slashes to add flags, e.g. /i for case-insensitive
-playwright-cli find --regex "/sign (in|up)/i"
 ```
 
 ### Targeting elements
@@ -325,48 +312,48 @@ By default, use refs from the snapshot to interact with page elements.
 
 ```bash
 # get snapshot with refs
-playwright-cli snapshot
+patchwright-cli snapshot
 
 # interact using a ref
-playwright-cli click e15
+patchwright-cli click e15
 ```
 
 You can also use css selectors or Playwright locators.
 
 ```bash
 # css selector
-playwright-cli click "#main > button.submit"
+patchwright-cli click "#main > button.submit"
 
 # role locator
-playwright-cli click "getByRole('button', { name: 'Submit' })"
+patchwright-cli click "getByRole('button', { name: 'Submit' })"
 
 # test id
-playwright-cli click "getByTestId('submit-button')"
+patchwright-cli click "getByTestId('submit-button')"
 ```
 
 ### Sessions
 
 ```bash
-playwright-cli -s=name <cmd>            # run command in named session
-playwright-cli -s=name close            # stop a named browser
-playwright-cli -s=name delete-data      # delete user data for named browser
-playwright-cli list                     # list all sessions
-playwright-cli close-all                # close all browsers
-playwright-cli kill-all                 # forcefully kill all browser processes
+patchwright-cli -s=name <cmd>            # run command in named session
+patchwright-cli -s=name close            # stop a named browser
+patchwright-cli -s=name delete-data      # delete user data for named browser
+patchwright-cli list                     # list all sessions
+patchwright-cli close-all                # close all browsers
+patchwright-cli kill-all                 # forcefully kill all browser processes
 ```
 
 ### Local installation
 
-If global `playwright-cli` command is not available, try a local version via `npx playwright cli`:
+If global `patchwright-cli` command is not available, try a local version via `npx playwright cli`:
 
 ```bash
 npx --no-install playwright --version
 ```
 
-When local version is available, use `npx playwright cli` in all commands. Otherwise, install `playwright-cli` as a global command:
+When local version is available, use `npx playwright cli` in all commands. Otherwise, install `patchwright-cli` as a global command:
 
 ```bash
-npm install -g @playwright/cli@latest
+npm install -g github:jsjohns/patchwright-cli
 ```
 
 ## Configuration file
@@ -374,7 +361,7 @@ npm install -g @playwright/cli@latest
 The Playwright CLI can be configured using a JSON configuration file. You can specify the configuration file using the `--config` command line option:
 
 ```bash
-playwright-cli --config path/to/config.json open example.com
+patchwright-cli --config path/to/config.json open example.com
 ```
 
 Playwright CLI will load config from `.playwright/cli.config.json` by default so that you did not need to specify it every time.
